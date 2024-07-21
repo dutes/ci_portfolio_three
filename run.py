@@ -13,7 +13,7 @@ def main_menu():
         if choice == '1':
             start_new_game()
         elif choice == '2':
-            display_high_scores()
+            display_high_scores_with_options()
         elif choice == '3':
             print("Thank you for playing!")
             break
@@ -38,20 +38,25 @@ def start_new_game():
 
     show_some(player_hand, dealer_hand)
 
-    if player_hand.value == 21:
-        if dealer_hand.value == 21:
+    if player_hand.value == 21 and dealer_hand.value == 21:
+            show_all(player_hand, dealer_hand)
             push()
-            return end_game(deck, player_hand, dealer_hand, player_chips)
-        else:
+            return
+    elif player_hand == 21:
+            show_all(player_hand,dealer_hand)
             player_wins(player_chips)
-            return end_game(deck, player_hand, dealer_hand, player_chips)
+            return
+    elif dealer_hand == 21:
+            show_all(player_hand, dealer_hand)
+            dealer_wins(player_chips)
+            return
 
     playing = True
     while playing:
         playing = hit_or_stand(deck, player_hand, dealer_hand, player_chips)
         if player_hand.value > 21:
             player_busts(player_chips)
-            return end_game(deck, player_hand, dealer_hand, player_chips)  # Pass deck instance
+            return 
 
     if player_hand.value <= 21:
         return end_game(deck, player_hand, dealer_hand, player_chips)  # Pass deck instance
@@ -60,6 +65,8 @@ def end_game(deck, player_hand, dealer_hand, player_chips):  # Accept deck as a 
     if player_hand.value <=21:
         while dealer_hand.value < 17:
             hit(deck, dealer_hand)
+        show_all(player_hand, dealer_hand)
+        
         if dealer_hand.value > 21:
             dealer_busts(player_chips)
         elif dealer_hand.value > player_hand.value:
@@ -68,8 +75,6 @@ def end_game(deck, player_hand, dealer_hand, player_chips):  # Accept deck as a 
             player_wins(player_chips)
         else:
             push()
-    else:
-        show_all(player_hand, dealer_hand)
 
     print("\nPlayer's winnings stand at", player_chips.total)
     if player_chips.total >= 100:
@@ -89,17 +94,35 @@ def end_game(deck, player_hand, dealer_hand, player_chips):  # Accept deck as a 
 def display_high_scores():
     highscores = get_highscores()
     if highscores:
+        print('\nHIgh Scores:')
+        for rank, (name, score) in enumerate(highscores, start=1):
+            print(f"{rank}. {name} - {score}")
+    else:
+        print("Your score did not break the top three.")
+
+
+def display_high_scores_with_options():
+    highscores = get_highscores()
+    if highscores:
         print("\nHigh Scores:")
         for rank, (name, score) in enumerate(highscores, start=1):
             print(f"{rank}. {name} - {score}")
-    
-        delete_option=input("Do you want to delete all the highscores? Type delete to confirm (Type anything to abort): ")
-        if delete_option.lower()=='delete':
-            delete_highscores()
-            print('All highscores have been deleted.')
-    
+
+        print("\nType 'b' to return to the main menu or 'x' to delete the highscores.")
+        choice = input("Enter your choice: ")
+        if choice.lower() =='x':
+            delete_confirm=input("Type 'delete' to confirm the deleition of all high scores: ")
+            if delete_confirm.lower()=='delete':
+                delete_highscores()
+                print("High scores have been deleted. \nPress any enter to return to main menu")
+                input()             
+        
+        elif choice.lower() =='b':
+            return
     else:
-        print("No high scores available.")
+        print("There are no high scores currently available. Press any key to return to the main menu.")
+        input()
+
 
 def take_bet(chips):
     while True:
@@ -117,7 +140,6 @@ def hit(deck, hand):
     hand.adjust_for_ace()
 
 def hit_or_stand(deck, player_hand, dealer_hand, player_chips):
-    global playing
     while True:
         x = input("Would you like to Hit or Stand? Enter 'h' or 's' ")
         if x[0].lower() == 'h':
