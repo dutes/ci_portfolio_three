@@ -25,76 +25,82 @@ def start_new_game():
     deck = Deck()
     deck.shuffle()
 
-    player_hand = Hand()
-    player_hand.add_card(deck.deal())
-    player_hand.add_card(deck.deal())
+    player_chips=Chips()
+    player_chips.total=100
 
-    dealer_hand = Hand()
-    dealer_hand.add_card(deck.deal())
-    dealer_hand.add_card(deck.deal())
+    print(f"You have {player_chips.total} chips to start. \nEach bet you make is taken from your total, each win added. \nWhen you reach zero chips your game is over")
 
-    player_chips = Chips()
-    take_bet(player_chips)
+    while player_chips.total > 0:
+        print(f"your current chip balance is: {player_chips.total}")
+        take_bet(player_chips)
 
-    show_some(player_hand, dealer_hand)
+        player_hand = Hand()
+        player_hand.add_card(deck.deal())
+        player_hand.add_card(deck.deal())
 
-    if player_hand.value == 21 and dealer_hand.value == 21:
-            show_all(player_hand, dealer_hand)
-            push()
-            return
-    elif player_hand == 21:
-            show_all(player_hand,dealer_hand)
-            player_wins(player_chips)
-            return
-    elif dealer_hand == 21:
-            show_all(player_hand, dealer_hand)
-            dealer_wins(player_chips)
-            return
+        dealer_hand = Hand()
+        dealer_hand.add_card(deck.deal())
+        dealer_hand.add_card(deck.deal())
 
-    playing = True
-    while playing:
-        playing = hit_or_stand(deck, player_hand, dealer_hand, player_chips)
-        if player_hand.value > 21:
-            player_busts(player_chips)
-            return 
+        show_some(player_hand, dealer_hand)
 
-    if player_hand.value <= 21:
-        return end_game(deck, player_hand, dealer_hand, player_chips)  # Pass deck instance
-
-def end_game(deck, player_hand, dealer_hand, player_chips):  # Accept deck as a parameter
-    if player_hand.value <=21:
-        while dealer_hand.value < 17:
-            hit(deck, dealer_hand)
-        show_all(player_hand, dealer_hand)
+        if player_hand.value == 21 and dealer_hand.value == 21:
+                show_all(player_hand, dealer_hand)
+                push()
+                
+        elif player_hand.value == 21:
+                show_all(player_hand,dealer_hand)
+                player_wins(player_chips)
+                
+        elif dealer_hand.value == 21:
+                show_all(player_hand, dealer_hand)
+                dealer_wins(player_chips)
         
-        if dealer_hand.value > 21:
-            dealer_busts(player_chips)
-        elif dealer_hand.value > player_hand.value:
-            dealer_wins(player_chips)
-        elif dealer_hand.value < player_hand.value:
-            player_wins(player_chips)
         else:
-            push()
+            playing = True
+            while playing:
+                playing = hit_or_stand(deck, player_hand, dealer_hand, player_chips)
+                if player_hand.value > 21:
+                    player_busts(player_chips)
+                    break 
+            if player_hand.value <= 21:
+                    end_game(deck, player_hand, dealer_hand, player_chips)  # Pass deck instance
+        
+        if player_chips.total <= 0:
+            print("You have no more chips. Game Over")
+            break
 
-    print("\nPlayer's winnings stand at", player_chips.total)
-    if player_chips.total >= 100:
-        name = input("Enter your name for the high score table: ")
-        add_highscore(name, player_chips.total)
-
-    print("High Scores:")
-    display_high_scores()
-
-    play_again = input("Do you want to play again? Enter 'y' or 'n': ")
-    if play_again[0].lower() == 'y':
-        start_new_game()
+        play_again=input("Do you want to play another round? Enter 'y' or 'n': ")
+        if play_again[0].lower() !='y':
+            break
+    if player_chips.total > 0:
+        if is_highscore(player_chips.total):
+            name=input('Enter your name for the high score table: ')
+            add_highscore(name, player_chips.total)
+        else:
+            print("Thanks for playing")
     else:
-        print("Thanks for playing")
-        return
+        print('Thanks for playing')
+    
+    main_menu()
+
+def end_game(deck, player_hand, dealer_hand, player_chips): 
+    while dealer_hand.value < 17:
+        hit(deck, dealer_hand)
+    show_all(player_hand, dealer_hand)
+    if dealer_hand.value > 21:
+         dealer_busts(player_chips)
+    elif dealer_hand.value > player_hand.value:
+        dealer_wins(player_chips)
+    elif dealer_hand.value < player_hand.value:
+        player_wins(player_chips)
+    else:
+        push()       
 
 def display_high_scores():
     highscores = get_highscores()
     if highscores:
-        print('\nHIgh Scores:')
+        print('\nHigh Scores:')
         for rank, (name, score) in enumerate(highscores, start=1):
             print(f"{rank}. {name} - {score}")
     else:
@@ -108,7 +114,7 @@ def display_high_scores_with_options():
         for rank, (name, score) in enumerate(highscores, start=1):
             print(f"{rank}. {name} - {score}")
 
-        print("\nType 'b' to return to the main menu or 'x' to delete the highscores.")
+        print("\nType 'b' to return to the main menu or 'x' to delete the high scores.")
         choice = input("Enter your choice: ")
         if choice.lower() =='x':
             delete_confirm=input("Type 'delete' to confirm the deleition of all high scores: ")
@@ -123,6 +129,9 @@ def display_high_scores_with_options():
         print("There are no high scores currently available. Press any key to return to the main menu.")
         input()
 
+def is_highscore(score):
+    highscores=get_highscores
+    return len(highscores) < 3 or score > highscores[-1][1]
 
 def take_bet(chips):
     while True:
