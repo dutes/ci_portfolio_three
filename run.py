@@ -60,7 +60,6 @@ def end_game(deck, player_hand, dealer_hand, player_chips):  # Accept deck as a 
     if player_hand.value <=21:
         while dealer_hand.value < 17:
             hit(deck, dealer_hand)
-        show_all(player_hand, dealer_hand)
         if dealer_hand.value > 21:
             dealer_busts(player_chips)
         elif dealer_hand.value > player_hand.value:
