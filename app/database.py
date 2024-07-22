@@ -13,9 +13,11 @@ def create_table():
     """
     Creates the highscores table in the SQLite database if it does not exist.
 
-    This function connects to the database, creates a cursor, and executes an SQL statement to create the highscores table.
+    This function connects to the database, creates a cursor, and executes an
+    SQL statement to create the highscores table.
     If the table already exists, the SQL statement is not executed.
-    After executing the SQL statement, the changes are committed and the connection to the database is closed.
+    After executing the SQL statement, the changes are committed and
+    the connection to the database is closed.
 
     Parameters:
         None
@@ -34,11 +36,14 @@ def add_highscore(name, score):
     """
     Adds a highscore to the highscores table in the SQLite database.
     
-    This function connects to the database, creates a cursor, and executes an SQL statement to insert a new highscore into the highscores table.
+    This function connects to the database, creates a cursor, and executes an
+    SQL statement to insert a new highscore into the highscores table.
     The SQL statement uses placeholders (?) to prevent SQL injection attacks.
     
-    After executing the SQL statement, the changes are committed and the connection to the database is closed.
-    The function then calls the maintain_highscores function to ensure that only the top 3 highscores are kept in the table.
+    After executing the SQL statement, the changes are committed and
+    the connection to the database is closed.
+    The function then calls the maintain_highscores function to ensure 
+    that only the top 3 highscores are kept in the table.
     
     Parameters:
         name (str): The name of the player.
@@ -49,26 +54,32 @@ def add_highscore(name, score):
     """
     conn = connect_db()
     cursor = conn.cursor()
-    cursor.execute('INSERT INTO highscores (name, score) VALUES (?, ?)', (name, score))
+    cursor.execute('INSERT INTO highscores (name, score) VALUES (?, ?)',
+                   (name, score))
     conn.commit()
     conn.close()
     maintain_highscores()
 
 def get_highscores():
     """
-    Retrieves the top 3 highscores from the highscores table in the SQLite database.
+    Retrieves the top 3 highscores from the highscores table in the SQLite
+    database.
     
-    This function connects to the database, creates a cursor, and executes an SQL statement to select the name and score of the top 3 highscores.
-    The SQL statement orders the highscores by score in descending order and limits the results to 3 rows.
+    This function connects to the database, creates a cursor, and executes
+    an SQL statement to select the name and score of the top 3 highscores.
+    The SQL statement orders the highscores by score in descending order
+    and limits the results to 3 rows.
     
-    After executing the SQL statement, the highscores are fetched and stored in a variable.
+    After executing the SQL statement, the highscores are fetched and
+    stored in a variable.
     The connection to the database is then closed.
     
     Parameters:
         None
     
     Returns:
-        list of tuples: A list of tuples containing the name and score of the top 3 highscores.
+        list of tuples: A list of tuples containing the name and score
+        of the top 3 highscores.
     
     Example:
         [('Alice', 100), ('Bob', 90), ('Charlie', 80)]
@@ -83,12 +94,16 @@ def get_highscores():
 
 def get_lowest_highscore():
     """
-    Retrieves the lowest highscore from the highscores table in the SQLite database.
+    Retrieves the lowest highscore from the highscores table in the SQLite
+    database.
     
-    This function connects to the database, creates a cursor, and executes an SQL statement to select the id and score of the lowest highscore.
-    The SQL statement orders the highscores by score in ascending order and limits the results to 1 row.
+    This function connects to the database, creates a cursor, and executes
+    an SQL statement to select the id and score of the lowest highscore.
+    The SQL statement orders the highscores by score in ascending order
+    and limits the results to 1 row.
     
-    After executing the SQL statement, the lowest highscore is fetched and stored in a variable.
+    After executing the SQL statement, the lowest highscore is fetched
+    and stored in a variable.
     The connection to the database is then closed.
     
     Parameters:
@@ -111,10 +126,12 @@ def delete_highscore(score_id):
     """
     Deletes a highscore from the highscores table in the SQLite database.
     
-    This function connects to the database, creates a cursor, and executes an SQL statement to delete a highscore from the highscores table.
+    This function connects to the database, creates a cursor, and
+    executes an SQL statement to delete a highscore from the highscores table.
     The SQL statement uses placeholders (?) to prevent SQL injection attacks.
     
-    After executing the SQL statement, the changes are committed and the connection to the database is closed.
+    After executing the SQL statement, the changes are committed
+    and the connection to the database is closed.
     
     Parameters:
         score_id (int): The id of the highscore to be deleted.
@@ -132,10 +149,15 @@ def maintain_highscores():
     """
     Maintains the highscores table by keeping only the top 3 highscores.
 
-    This function connects to the database, creates a cursor, and executes an SQL statement to count the number of rows in the highscores table.
-    If the number of rows is greater than 3, the function calls the get_lowest_highscore function to get the lowest highscore.
-    The function then calls the delete_highscore function to delete the lowest highscore.
-    After deleting the lowest highscore, the connection to the database is closed.
+    This function connects to the database, creates a cursor, and
+    executes an SQL statement to count the number of rows in the
+    highscores table.
+    If the number of rows is greater than 3, the function calls
+    the get_lowest_highscore function to get the lowest highscore.
+    The function then calls the delete_highscore function to delete
+    the lowest highscore.
+    After deleting the lowest highscore, the connection to the
+    database is closed.
 
     Parameters:
         None
@@ -156,8 +178,11 @@ def delete_highscores():
     """
     Deletes all highscores from the highscores table in the SQLite database.
 
-    This function connects to the database, creates a cursor, and executes an SQL statement to delete all highscores from the highscores table.
-    After executing the SQL statement, the changes are committed and the connection to the database is closed.
+    This function connects to the database, creates a cursor, and
+    executes an SQL statement to delete all highscores from the
+    highscores table.
+    After executing the SQL statement, the changes are committed
+    and the connection to the database is closed.
 
     Parameters:
         None

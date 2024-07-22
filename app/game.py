@@ -1,8 +1,33 @@
 import random
 
 suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
-ranks = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King', 'Ace']
-values = {'Two': 2, 'Three': 3, 'Four': 4, 'Five': 5, 'Six': 6, 'Seven': 7, 'Eight': 8, 'Nine': 9, 'Ten': 10, 'Jack': 10, 'Queen': 10, 'King': 10, 'Ace': 11}
+ranks = ['Two',
+         'Three', 
+         'Four', 
+         'Five', 
+         'Six', 
+         'Seven', 
+         'Eight', 
+         'Nine', 
+         'Ten', 
+         'Jack', 
+         'Queen', 
+         'King', 
+         'Ace']
+
+values = {'Two': 2,
+          'Three': 3, 
+          'Four': 4, 
+          'Five': 5, 
+          'Six': 6, 
+          'Seven': 7, 
+          'Eight': 8, 
+          'Nine': 9, 
+          'Ten': 10, 
+          'Jack': 10,
+          'Queen': 10, 
+          'King': 10,
+          'Ace': 11}
 
 class Card:
     """
@@ -72,7 +97,8 @@ class Deck:
         """
         Shuffles the deck of cards.
         
-        This method shuffles the deck of cards using the random.shuffle function.
+        This method shuffles the deck of cards using the
+        random.shuffle function.
         
         Parameters:
         None
@@ -104,7 +130,8 @@ class Hand:
     Represents a hand of playing cards.
     
     Attributes:
-        cards (list): A list of Card objects representing the cards in the hand.
+        cards (list): A list of Card objects representing the cards
+        in the hand.
         value (int): The total value of the cards in the hand.
         aces (int): The number of aces in the hand.
     
@@ -114,7 +141,8 @@ class Hand:
     """
     def __init__(self):
         """
-        Initializes a Hand object with an empty list of cards, a value of 0, and no aces.
+        Initializes a Hand object with an empty list of cards,
+        a value of 0, and no aces.
         
         Parameters:
         None
@@ -130,7 +158,9 @@ class Hand:
         """
         Adds a card to the hand and adjusts the value of the hand.
         
-        This method adds a card to the hand, updates the value of the hand based on the card's rank, and adjusts the value for aces if necessary.
+        This method adds a card to the hand, updates the value of
+        the hand based on the card's rank, and adjusts the value for
+        aces if necessary.
         
         Parameters:
             card (Card): The Card object to add to the hand.
@@ -150,7 +180,9 @@ class Hand:
         """
         Adjusts the value of the hand for aces.
         
-        This method adjusts the value of the hand for aces by subtracting 10 from the value if the total value is greater than 21 and there is at least one ace in the hand.
+        This method adjusts the value of the hand for aces by
+        subtracting 10 from the value if the total value is greater
+        than 21 and there is at least one ace in the hand.
         
         Parameters:
         None
@@ -176,7 +208,8 @@ class Chips:
     """
     def __init__(self):
         """
-        Initializes a Chips object with a default total of 100 chips and no bet.
+        Initializes a Chips object with a default total of
+        100 chips and no bet.
         
         Parameters:
         None
@@ -192,7 +225,8 @@ class Chips:
         """
         Increases the total number of chips by the bet amount.
         
-        This method increases the total number of chips by the bet amount when the player wins a hand.
+        This method increases the total number of chips by the bet
+        amount when the player wins a hand.
         
         Parameters:
         None
@@ -209,7 +243,8 @@ class Chips:
         """
         Decreases the total number of chips by the bet amount.
 
-        This method decreases the total number of chips by the bet amount when the player loses a hand.
+        This method decreases the total number of chips by the bet
+        amount when the player loses a hand.
 
         Parameters:
         None

@@ -1,20 +1,27 @@
 from app.game import Deck, Hand, Chips
-from app.database import create_table, add_highscore, get_highscores, delete_highscores
+from app.database import(
+    create_table, add_highscore, get_highscores, delete_highscores
+    )
 
 def main_menu():
     """
-        Displays the main menu for the game. Handles user input for the options:
-        1. New Game
-        2. View High Scores
-        3. Exit
+    Displays the main menu for the game. Handles user input for the options:
+    1. New Game
+    2. View High Scores
+    3. Exit
 
-        New Game: Starts a new game of Black Jack by calling the start_new_game function.
-        View High Scores: Displays the high scores table with the top three scores by calling the display_high_scores_with_options function.
-        Exit: Exits the game.
+    New Game: Starts a new game of Black Jack by calling the start_new_game
+    function.
 
-        If the user enters an invalid choice, the function will display an error message and prompt the user to enter a valid choice.
+    View High Scores: Displays the high scores table with the top three scores
+    by calling the display_high_scores_with_options function.
 
-        Returns: none
+    Exit: Exits the game.
+
+    If the user enters an invalid choice, the function will display an error
+    message and prompt the user to enter a valid choice.
+
+    Returns: none
     """
     while True:
         print("\nBlack Jack Main Menu")
@@ -100,7 +107,9 @@ def start_new_game():
             print("You have no more chips. Game Over")
             break
 
-        play_again=input("Do you want to play another round? Enter 'y' or 'n': ")
+        play_again=input(
+            "Do you want to play another round? Enter 'y' or 'n': "
+            )
         if play_again[0].lower() !='y':
             break
     if player_chips.total > 0:
@@ -152,7 +161,8 @@ def end_game(deck,player_hand, dealer_hand, player_chips):
 def display_high_scores():
     """
     Displays the top three high scores from the high scores table.
-    If there are no high scores, the function will display a message indicating that the player's score did not break the top three.
+    If there are no high scores, the function will display a message
+    indicating that the player's score did not break the top three.
 
     Returns: none
     """
@@ -167,11 +177,15 @@ def display_high_scores():
 
 def display_high_scores_with_options():
     """
-    Displays the high scores table with the top three scores and provides the player with the option to return to the main menu or delete the high scores.
-    If the player chooses to delete the high scores, the function will prompt the player to confirm the deletion.
+    Displays the high scores table with the top three scores and provides the
+    player with the option to return to the main menu or delete high scores.
+    If the player chooses to delete the high scores, the function will prompt
+    the player to confirm the deletion.
     If the player confirms the deletion, the high scores table will be deleted.
-    If the player chooses to return to the main menu, the function will return to the main menu.
-    If there are no high scores, the function will display a message indicating that there are no high scores available.
+    If the player chooses to return to the main menu, the function will return
+    to the main menu.
+    If there are no high scores, the function will display a message
+    indicating that there are no high scores available.
 
     Returns: none
     """
@@ -181,25 +195,31 @@ def display_high_scores_with_options():
         for rank, (name, score) in enumerate(highscores, start=1):
             print(f"{rank}. {name} - {score}")
 
-        print("\nType 'b' to return to the main menu or 'x' to delete the high scores.")
+        print("\nType 'b' to return to the main menu or 'x'")
+        print("to delete the high scores.")
         choice = input("Enter your choice: ")
         if choice.lower() =='x':
-            delete_confirm=input("Type 'delete' to confirm the deleition of all high scores: ")
+            delete_confirm=input ("Type 'delete' to confirm the deletion of all high scores:")
             if delete_confirm.lower()=='delete':
                 delete_highscores()
-                print("High scores have been deleted. \nPress any enter to return to main menu")
-                input()                
+                print("High scores have been deleted.")
+                print("\nPress any enter to return to main menu")
+                input()               
         elif choice.lower() =='b':
             return
     else:
-        print("There are no high scores currently available. Press any key to return to the main menu.")
+        print("There are no high scores currently available.")
+        print("\nPress any key to return to the main menu.")
         input()
 
 def is_highscore(score):
     """
-    Determines if the player's score is a high score by comparing the player's score to the top three scores in the high scores table.
-    If the player's score is greater than the lowest score in the high scores table, the function will return True.
-    If the player's score is not greater than the lowest score in the high scores table, the function will return False.
+    Determines if the player's score is a high score by comparing the player's 
+    score to the top three scores in the high scores table.
+    If the player's score is greater than the lowest score in the high scores
+    table, the function will return True.
+    If the player's score is not greater than the lowest score in the high
+    scores table, the function will return False.
     
     Parameters:
     score (int): The player's score to compare to the high scores table.
@@ -213,8 +233,10 @@ def is_highscore(score):
 def take_bet(chips):
     """
     Prompts the player to enter a bet and validates the bet amount.
-    If the player enters a bet greater than their chip balance, the function will display an error message and prompt the player to enter a valid bet.
-    If the player enters a non-integer value, the function will display an error message and prompt the player to enter a valid bet.
+    If the player enters a bet greater than their chip balance, the function
+    will display an error message and prompt the player to enter a valid bet.
+    If the player enters a non-integer value, the function will display an
+    error message and prompt the player to enter a valid bet.
 
     Parameters:
     chips (Chips): The player's chip balance.
@@ -225,7 +247,8 @@ def take_bet(chips):
         try:
             chips.bet = int(input("How many chips would you like to bet? "))
             if chips.bet > chips.total:
-                print(f"Sorry, you don't have enough chips! You have: {chips.total}")
+                print("Sorry, you don't have enough chips!")
+                print(f"\nYou have: {chips.total}")
             else:
                 break
         except ValueError:
@@ -233,7 +256,8 @@ def take_bet(chips):
 
 def hit(deck, hand):
     """
-    Adds a card to the player's or dealer's hand and adjusts the hand value for aces.
+    Adds a card to the player's or dealer's hand and adjusts the hand value
+    for aces.
     
     Parameters:
     deck (Deck): The deck of cards used in the game.
@@ -247,8 +271,10 @@ def hit(deck, hand):
 def hit_or_stand(deck, player_hand, dealer_hand):
     """
     Prompts the player to hit or stand and validates the player's input.
-    If the player enters an invalid input, the function will display an error message and prompt the player to enter a valid input.
-    If the player chooses to hit, the player will be dealt another card and the player's hand will be displayed.
+    If the player enters an invalid input, the function will display an
+    error message and prompt the player to enter a valid input.
+    If the player chooses to hit, the player will be dealt another card
+    and the player's hand will be displayed.
     If the player chooses to stand, the function will return False.
     
     Parameters:
@@ -257,7 +283,8 @@ def hit_or_stand(deck, player_hand, dealer_hand):
     dealer_hand (Hand): The dealer's hand of cards.
     
     Returns:
-    bool: True if the player chooses to hit, False if the player chooses to stand.
+    bool: True if the player chooses to hit, False if the player chooses
+    to stand.
     """
     while True:
         try:
@@ -308,7 +335,8 @@ def show_all(player, dealer):
 
 def player_busts(chips):
     """
-    Displays a message indicating that the player has busted and updates the player's chip balance.
+    Displays a message indicating that the player has busted and updates the
+    player's chip balance.
     
     Parameters:
     chips (Chips): The player's chip balance.
@@ -320,7 +348,8 @@ def player_busts(chips):
 
 def player_wins(chips):
     """
-    Displays a message indicating that the player has won and updates the player's chip balance.
+    Displays a message indicating that the player has won and updates the
+    player's chip balance.
     
     Parameters:
     chips (Chips): The player's chip balance.
@@ -332,7 +361,8 @@ def player_wins(chips):
 
 def dealer_busts(chips):
     """
-    Displays a message indicating that the dealer has busted and updates the player's chip balance.
+    Displays a message indicating that the dealer has busted and updates
+    the player's chip balance.
     
     Parameters:
     chips (Chips): The player's chip balance.
@@ -344,7 +374,8 @@ def dealer_busts(chips):
 
 def dealer_wins(chips):
     """
-    Displays a message indicating that the dealer has won and updates the player's chip balance.
+    Displays a message indicating that the dealer has won and updates
+    the player's chip balance.
     
     Parameters:
     chips (Chips): The player's chip balance.
