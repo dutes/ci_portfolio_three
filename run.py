@@ -34,7 +34,7 @@ def main_menu():
         if choice == '1':
             start_new_game()
         elif choice == '2':
-            display_high_scores_with_options()
+            display_high_scores()
         elif choice == '3':
             print("Thank you for playing!")
             break
@@ -174,44 +174,6 @@ def display_high_scores():
     else:
         print("Your score did not break the top three.")
 
-
-def display_high_scores_with_options():
-    """
-    Displays the high scores table with the top three scores and provides the
-    player with the option to return to the main menu or delete high scores.
-    If the player chooses to delete the high scores, the function will prompt
-    the player to confirm the deletion.
-    If the player confirms the deletion, the high scores table will be deleted.
-    If the player chooses to return to the main menu, the function will return
-    to the main menu.
-    If there are no high scores, the function will display a message
-    indicating that there are no high scores available.
-
-    Returns: none
-    """
-    highscores = get_highscores()
-    if highscores:
-        print("\nHigh Scores:")
-        for rank, (name, score) in enumerate(highscores, start=1):
-            print(f"{rank}. {name} - {score}")
-
-        print("\nType 'b' to return to the main menu or 'x'")
-        print("to delete the high scores.")
-        choice = input("Enter your choice: ")
-        if choice.lower() =='x':
-            delete_confirm=input ("Type 'delete' to confirm the deletion of all high scores:")
-            if delete_confirm.lower()=='delete':
-                delete_highscores()
-                print("High scores have been deleted.")
-                print("\nPress any enter to return to main menu")
-                input()               
-        elif choice.lower() =='b':
-            return
-    else:
-        print("There are no high scores currently available.")
-        print("\nPress any key to return to the main menu.")
-        input()
-
 def is_highscore(score):
     """
     Determines if the player's score is a high score by comparing the player's 
@@ -338,7 +300,7 @@ def show_all(player, dealer):
     """
     print("\nDealer's Hand:", *dealer.cards, sep='\n ')
     print("Dealer's Hand =", dealer.value)
-    print(f"\nPlayer's Hand (value: {player.value}):", *player.cards, sep='\n ')
+    print(f"\nPlayer's Hand (value: {player.value}):",*player.cards,sep='\n ')
     print("Player's Hand =", player.value)
 
 def player_busts(chips):
