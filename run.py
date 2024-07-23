@@ -245,14 +245,22 @@ def take_bet(chips):
     """
     while True:
         try:
-            chips.bet = int(input("How many chips would you like to bet? "))
-            if chips.bet > chips.total:
-                print("Sorry, you don't have enough chips!")
-                print(f"\nYou have: {chips.total}")
-            else:
-                break
+            bet =input("How many chips would you like to bet? ").strip()
+            if bet.isnumeric():
+                bet=int(bet)
+                if bet > 0:
+                    if bet > chips.total:
+                        print("You do not have enough chips")
+                        print(f"you have {chips.total} chips")
+                    else:
+                        chips.bet=bet
+                        break
+                else:
+                    print("bet needs to be a number greater than 0")
+            else: 
+                print("bet needs to be a positive number")
         except ValueError:
-            print("Sorry, a bet must be an integer!")
+            print("bet needs to be a number")
 
 def hit(deck, hand):
     """
