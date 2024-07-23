@@ -173,25 +173,3 @@ def maintain_highscores():
         lowest = get_lowest_highscore()
         delete_highscore(lowest[0])
     conn.close()
-
-def delete_highscores():
-    """
-    Deletes all highscores from the highscores table in the SQLite database.
-
-    This function connects to the database, creates a cursor, and
-    executes an SQL statement to delete all highscores from the
-    highscores table.
-    After executing the SQL statement, the changes are committed
-    and the connection to the database is closed.
-
-    Parameters:
-        None
-    
-    Returns:    
-        None
-    """
-    conn = connect_db()
-    conn.cursor()
-    conn.execute('DELETE FROM highscores')
-    conn.commit()
-    conn.close()

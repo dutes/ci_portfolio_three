@@ -1,7 +1,13 @@
+import re
+import os
 from app.game import Deck, Hand, Chips
-from app.database import(
-    create_table, add_highscore, get_highscores, delete_highscores
-    )
+from app.database import(create_table, add_highscore, get_highscores)
+
+def clear_screen():
+    """
+    Clears the terminal screen.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def main_menu():
     """
@@ -29,7 +35,7 @@ def main_menu():
         print("2. View High Scores")
         print("3. Exit")
 
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice: ").strip()
 
         if choice == '1':
             start_new_game()
@@ -43,20 +49,12 @@ def main_menu():
 
 def start_new_game():
     """
-    Initalizes a new game of black jack. The game will continue until the player runs out of chips or chooses to exit the game.
-    The game will display the player's current chip balance and prompt the player to enter a bet.
-    The player and dealer hands will be dealt two cards each. The player's hand will be displayed, with one of the dealer's cards hidden.
-    If the player or dealer has a blackjack, the game will end and the appropriate win/loss message will be displayed.
-    If neither the player or dealer has a blackjack, the player will be prompted to hit or stand.
-    If the player busts, the player will lose the bet and the game will end.
-    If the player stands, the dealer will play. If the dealer busts, the player wins.
-    If the dealer wins, the player loses the bet.
-    If the player wins, the player wins the bet.
-    If the player and dealer tie, the player will push and the bet will be returned.
-    If the player runs out of chips, the game will end.
-    If the player chooses to play again, the game will continue.
-    If the player has a high score, the player will be prompted to enter their name for the high score table.
-    If the player does not have a high score, the player will be thanked for playing.
+    Initalizes a new game of black jack. The game will continue until the
+    player runs out of chips or chooses to exit the game.
+    The game will display the player's current chip balance and prompt the
+    player to enter a bet.
+    The player and dealer hands will be dealt two cards each. 
+    The player's hand will be displayed, with one of the dealer's cards hidden.
 
     Returns: none
     """
@@ -66,7 +64,7 @@ def start_new_game():
 
     player_chips=Chips()
     player_chips.total=100
-
+    clear_screen()
     print("You have", player_chips.total, "chips to start.")
     print("\nEach bet you make is taken from your total, each win added.")
     print("\nWhen you reach zero chips your game is over.")
@@ -74,6 +72,9 @@ def start_new_game():
     while player_chips.total > 0:
         print(f"your current chip balance is: {player_chips.total}")
         take_bet(player_chips)
+
+        clear_screen()
+        print(f"Game has started, player has bet {player_chips.bet} chips")
 
         player_hand = Hand()
         player_hand.add_card(deck.deal())
@@ -107,15 +108,29 @@ def start_new_game():
             print("You have no more chips. Game Over")
             break
 
-        play_again=input(
+        while True:
+            play_again=input(
             "Do you want to play another round? Enter 'y' or 'n': "
-            )
-        if play_again[0].lower() !='y':
+            ).strip().lower()  
+            if play_again in ['y', 'n']:
+                break
+            else:
+                print("Invalid input. Please enter 'y' or 'n'.")
+        if play_again == 'n':
             break
+
     if player_chips.total > 0:
         if is_highscore(player_chips.total):
-            name=input('Enter your name for the high score table: ')
-            add_highscore(name, player_chips.total)
+            while True:
+                name = input(
+                    "Enter your initials for the high score table: "
+                    ).strip().upper()
+                print("3 letters max, only letters allowed")
+                if re.match("^[A-Z]{1,3}$", name):
+                    add_highscore(name, player_chips.total)
+                    break
+                else:
+                    print("Invalid input. Please enter 1-3 letters.")       
         else:
             print("Thanks for playing")
     else:
@@ -125,17 +140,9 @@ def start_new_game():
 
 def end_game(deck,player_hand, dealer_hand, player_chips):
     """
-    Handles the end of game logic which includes the dealer playing and determining the winner of the game and updating the player's chip balance.
-    The fucntion performs the following actions:
-    1. The dealer will play until their hand value is 17 or greater.
-    2. The dealer's hand will be displayed.
-    3. If the dealer busts, the player wins.
-    4. If the dealer's hand value is greater than the player's hand value, the dealer wins.
-    5. If the dealer's hand value is less than the player's hand value, the player wins.
-    6. If the dealer's hand value is equal to the player's hand value, the player pushes.
-    7. The player's chip balance will be updated based on the outcome of the game.
-    8. The function will return to the start_new_game function if the player has chips remaining.
-    
+    Handles the end of game logic which includes the dealer playing and
+    determining the winner of the game and updating the player's chip balance.
+        
 
     Parameters:
     deck (Deck): The deck of cards used in the game.
@@ -148,15 +155,19 @@ def end_game(deck,player_hand, dealer_hand, player_chips):
     """
     while dealer_hand.value < 17:
         hit(deck, dealer_hand)
+    clear_screen()
     show_all(player_hand, dealer_hand)
     if dealer_hand.value > 21:
         dealer_busts(player_chips)
+        print("Round Over - Dealer busts! Player wins!")
     elif dealer_hand.value > player_hand.value:
         dealer_wins(player_chips)
     elif dealer_hand.value < player_hand.value:
         player_wins(player_chips)
+        print("Round Over - Player wins!")
     else:
         push()
+        print("Round Over - its a push!")
 
 def display_high_scores():
     """
@@ -172,7 +183,7 @@ def display_high_scores():
         for rank, (name, score) in enumerate(highscores, start=1):
             print(f"{rank}. {name} - {score}")
     else:
-        print("Your score did not break the top three.")
+        print("There are no high scores yet.")
 
 def is_highscore(score):
     """
@@ -261,6 +272,7 @@ def hit_or_stand(deck, player_hand, dealer_hand):
             x = input("Would you like to Hit or Stand? Enter 'h' or 's' ")
             if x[0].lower() == 'h':
                 hit(deck, player_hand)
+                clear_screen()
                 show_some(player_hand, dealer_hand)
                 if player_hand.value > 21:
                     return False  # Player busts, end game
@@ -352,8 +364,9 @@ def dealer_wins(chips):
     
     Returns: none
     """
-    print("Dealer wins!")
+    print("Round Over - Dealer wins!")
     chips.lose_bet()
+    
 
 def push():
     """
