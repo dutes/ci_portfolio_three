@@ -34,11 +34,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background-color: #004225;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
         }
 
         /**
@@ -191,22 +186,14 @@
             text-transform: uppercase;
             margin: 10px;
             border-radius: 8px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;            
+            display: block;        
         }
     </style>
 </head>
-<!-- <div>@{body}</div>
-<div id="background"></div> -->
+<div>@{body}</div>
+<div id="background"></div> 
 
-<div class="container">
-    <div id="terminal-container" class="xterm"></div>
-    <button>Click ME</button>
-</div>
-<div id="background"></div>
-<script>
-    var term = new Terminal();
-    term.open(document.getElementById('terminal-container'));
-</script>
+
+
+
 </html>
