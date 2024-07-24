@@ -10,13 +10,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xterm/3.14.5/addons/attach/attach.js"></script>
     <title>Python Terminal by Code Institute</title>
     <style>
-        body {
-            font-family: Arial;
-            display:flex;
-            justify-content: center;
+        #background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -10;
             height: 100vh;
-            margin:0;
-            background-color: darkolivegreen;
+            width: 100%;
+            background-color: #004225;
         }
 
         /**
@@ -175,7 +176,6 @@
         }
     </style>
 </head>
-
-@{body}
+<div>@{body}</div>
 
 </html>
