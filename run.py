@@ -89,7 +89,6 @@ def main_menu():
     Returns: none
     """
     while True:
-        clear_screen()
         print(BLACKJACK_ART)
         print("\nBlack Jack Main Menu")
         print("1. New Game")
@@ -196,7 +195,7 @@ def start_new_game():
             print("Thanks for playing")
     else:
         print('Thanks for playing')
-
+    clear_screen()
     main_menu()
 
 def end_game(deck,player_hand, dealer_hand, player_chips):
