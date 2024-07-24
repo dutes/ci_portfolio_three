@@ -52,6 +52,16 @@ from app.database import(create_table, add_highscore, get_highscores)
 
 # Rest of the code...
 
+#ASCII art for main menu
+BLACKJACK_ART= """
+______ _            _      ___            _    
+| ___ \ |          | |    |_  |          | |   
+| |_/ / | __ _  ___| | __   | | __ _  ___| | __
+| ___ \ |/ _` |/ __| |/ /   | |/ _` |/ __| |/ /
+| |_/ / | (_| | (__|   </\__/ / (_| | (__|   < 
+\____/|_|\__,_|\___|_|\_\____/ \__,_|\___|_|\_\
+"""
+
 def clear_screen():
     """
     Clears the terminal screen.
@@ -79,6 +89,7 @@ def main_menu():
     Returns: none
     """
     while True:
+        print(BLACKJACK_ART)
         print("\nBlack Jack Main Menu")
         print("1. New Game")
         print("2. View High Scores")
