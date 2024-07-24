@@ -186,14 +186,15 @@
             text-transform: uppercase;
             margin: 10px;
             border-radius: 8px;
-            display: block;        
+            position:relative;
+            left:50%;
+            transform:translateX(-50%,0);        
         }
     </style>
 </head>
-<div class="container">
-    <div>@{body}</div>
-    <button>Play Blackjack</button>
-</div>
+
+<div>@{body}</div>
+
 <div id="background"></div> 
 
 
