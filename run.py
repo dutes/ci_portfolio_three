@@ -89,6 +89,7 @@ def main_menu():
     Returns: none
     """
     while True:
+        clear_screen()
         print(BLACKJACK_ART)
         print("\nBlack Jack Main Menu")
         print("1. New Game")
