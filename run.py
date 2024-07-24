@@ -1,7 +1,56 @@
+"""
+This module contains the main game logic for a text-based version of the game
+Black Jack.
+The game allows the player to play multiple rounds of Black Jack, place bets,
+view high scores,
+and exit the game. The game is played against a computer dealer.
+
+The module includes the following functions:
+- clear_screen(): Clears the terminal screen.
+- main_menu(): Displays the main menu for the game and handles user input for
+menu options.
+- start_new_game(): Initializes a new game of Black Jack and handles the game
+flow.
+- end_game(deck, player_hand, dealer_hand, player_chips): Handles the end of
+game logic and determines the winner.
+- display_high_scores(): Displays the top three high scores from the high
+scores table.
+- is_highscore(score): Determines if the player's score is a high score.
+- take_bet(chips): Prompts the player to enter a bet and validates the bet
+amount.
+- hit(deck, hand): Adds a card to the player's or dealer's hand and adjusts
+the hand value for aces.
+- hit_or_stand(deck, player_hand, dealer_hand): Prompts the player to hit or
+stand and validates the player's input.
+- show_some(player, dealer): Displays the player's hand and one of the
+dealer's cards.  
+- show_all(player, dealer): Displays the player's hand and the dealer's hand.
+- player_busts(chips): Displays a message indicating that the player has
+busted and updates the player's chip balance.
+- player_wins(chips): Displays a message indicating that the player has won
+and updates the player's chip balance.
+- dealer_busts(chips): Displays a message indicating that the dealer has
+busted and updates the player's chip balance.
+
+The module also imports the following classes and functions:
+- Deck: A class representing a deck of cards.
+- Hand: A class representing a hand of cards.
+- Chips: A class representing the player's chip balance.
+- create_table(): A function to create the high scores table in the database.
+- add_highscore(name, score): A function to add a high score to the database.
+- get_highscores(): A function to retrieve the top three high scores from
+the database.
+
+The module is run as the main program to start the game by calling the
+main_menu function.
+"""
+
 import re
 import os
 from app.game import Deck, Hand, Chips
 from app.database import(create_table, add_highscore, get_highscores)
+
+# Rest of the code...
 
 def clear_screen():
     """
@@ -111,7 +160,7 @@ def start_new_game():
         while True:
             play_again=input(
             "Do you want to play another round? Enter 'y' or 'n': "
-            ).strip().lower()  
+            ).strip().lower()
             if play_again in ['y', 'n']:
                 break
             else:
@@ -130,7 +179,7 @@ def start_new_game():
                     add_highscore(name, player_chips.total)
                     break
                 else:
-                    print("Invalid input. Please enter 1-3 letters.")       
+                    print("Invalid input. Please enter 1-3 letters.")
         else:
             print("Thanks for playing")
     else:
@@ -230,7 +279,7 @@ def take_bet(chips):
                         break
                 else:
                     print("bet needs to be a number greater than 0")
-            else: 
+            else:
                 print("bet needs to be a positive number")
         except ValueError:
             print("bet needs to be a number")
@@ -282,8 +331,8 @@ def hit_or_stand(deck, player_hand, dealer_hand):
             #else:
                 #print("Sorry, please try again.")
         except(IndexError, ValueError):
-            print("Invalid input, please enter either 'h' or 's'.")   
-        return True
+            print("Invalid input, please enter either 'h' or 's'.")
+            return True
 
 def show_some(player, dealer):
     """
@@ -366,7 +415,6 @@ def dealer_wins(chips):
     """
     print("Round Over - Dealer wins!")
     chips.lose_bet()
-    
 
 def push():
     """
