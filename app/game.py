@@ -175,6 +175,7 @@ class Hand:
         self.value += values[card.rank]
         if card.rank == 'Ace':
             self.aces += 1
+        self.adjust_for_ace()
 
     def adjust_for_ace(self):
         """
