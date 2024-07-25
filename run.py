@@ -105,6 +105,7 @@ def main_menu():
             print("Thank you for playing!")
             break
         else:
+            clear_screen()
             print("Invalid choice. Please enter 1, 2, or 3.")
 
 def start_new_game():
@@ -177,6 +178,7 @@ def start_new_game():
             else:
                 print("Invalid input. Please enter 'y' or 'n'.")
         if play_again == 'n':
+            print(f"Your score is: {player_chips.total}")
             break
 
     if player_chips.total > 0:
@@ -188,13 +190,19 @@ def start_new_game():
                 print("3 letters max, only letters allowed")
                 if re.match("^[A-Z]{1,3}$", name):
                     add_highscore(name, player_chips.total)
+                    display_high_scores()
                     break
                 else:
                     print("Invalid input. Please enter 1-3 letters.")
         else:
             print("Thanks for playing")
+            print(f"Your score is: {player_chips.total}")
+            input("Press Enter to return to the main menu.")
     else:
-        print('Thanks for playing')
+        print("Thanks for playing")
+        print(f"Your score is: {player_chips.total}")
+        input("Press Enter to return to the main menu.")
+
     clear_screen()
     main_menu()
 
@@ -244,6 +252,13 @@ def display_high_scores():
             print(f"{rank}. {name} - {score}")
     else:
         print("There are no high scores yet.")
+    while True:
+        print("\nType 'b' to return to the main menu.")
+        user_input = input().strip()
+        if user_input == 'b':
+            break
+        else:
+            print("Invalid input. Type b to return to the main menu.")
 
 def is_highscore(score):
     """
