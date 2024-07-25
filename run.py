@@ -55,13 +55,12 @@ from app.database import(create_table, add_highscore, get_highscores)
 # Rest of the code...
 console=Console()
 #ASCII art for main menu
-BLACKJACK_ART= r"""
-______ _            _      ___            _    
-| ___ \ |          | |    |_  |          | |   
-| |_/ / | __ _  ___| | __   | | __ _  ___| | __
-| ___ \ |/ _` |/ __| |/ /   | |/ _` |/ __| |/ /
-| |_/ / | (_| | (__|   </\__/ / (_| | (__|   < 
-\____/|_|\__,_|\___|_|\_\____/ \__,_|\___|_|\_\
+BLACKJACK_ART = r"""
+ ____  _        _    ____ _  __   _   _    ____ _  __
+| __ )| |      / \  / ___| |/ /  | | / \  / ___| |/ /
+|  _ \| |     / _ \| |   | ' /_  | |/ _ \| |   | ' / 
+| |_) | |___ / ___ \ |___| . \ |_| / ___ \ |___| . \ 
+|____/|_____/_/   \_\____|_|\_\___/_/   \_\____|_|\_\
 """
 
 
@@ -94,7 +93,8 @@ def main_menu():
     """
     while True:
         clear_screen()
-        console.print(BLACKJACK_ART, style="bold green")
+        blackjack_art=Text(BLACKJACK_ART,style="bold green")
+        console.print(blackjack_art)
         console.print("\nBlack Jack Main Menu",style="red")
         console.print("1. New Game",style="bright_green")
         console.print("2. View High Scores", style="bright_yellow")
@@ -112,7 +112,8 @@ def main_menu():
             break
         else:
             clear_screen()
-            console.print("Invalid choice. Please enter 1, 2, or 3.",style="bold red")
+            console.print("Invalid choice. Please enter 1, 2, or 3.",
+                          style="bold red")
 
 def start_new_game():
     """
@@ -132,17 +133,22 @@ def start_new_game():
     player_chips=Chips()
     player_chips.total=100
     clear_screen()
-    console.print(f"You have [bold cyan]{player_chips.total}[/bold cyan] chips to start.",style="bold yellow")
+    console.print(f"You have [bold cyan]{player_chips.total}[/bold cyan]chips to start."
+                  ,style="bold yellow")
     console.print("\nEach bet you make is taken from your total, each win added.",
         style="bold green")
-    console.print("\nWhen you reach zero chips your game is over.\n", style="bold red")
+    console.print("\nWhen you reach zero chips your game is over.\n"
+                  ,style="bold red")
 
     while player_chips.total > 0:
-        console.print(f"your current chip balance is: [bold cyan]{player_chips.total}[/bold cyan]",style="bold green")
+        console.print(f"your current chip balance is: [bold cyan]{player_chips.total}[/bold cyan]"
+                      ,style="bold green")
         take_bet(player_chips)
 
         clear_screen()
-        console.print(f"Game has started, player has bet [bold cyan]{player_chips.total}[/bold cyan] chips",style="bold green")
+        console.print(
+            f"Game has started, player has bet [bold cyan]{player_chips.total}[/bold cyan] chips",
+                      style="bold green")
 
         player_hand = Hand()
         player_hand.add_card(deck.deal())
@@ -177,35 +183,43 @@ def start_new_game():
             break
 
         while True:
-            console.print("Do you want to play another round? Enter 'y' or 'n': ",style="bold yellow")
+            console.print("Do you want to play another round? Enter 'y' or 'n': "
+                          ,style="bold yellow")
             play_again=input().strip().lower()
             if play_again in ['y', 'n']:
                 break
             else:
-                console.print("Invalid input. Please enter 'y' or 'n'.",style="bold red")
+                console.print("Invalid input. Please enter 'y' or 'n'."
+                              ,style="bold red")
         if play_again == 'n':
-            console.print(f"Your score is: {player_chips.total}",style="bold green")
+            console.print(f"Your score is: {player_chips.total}",
+                          style="bold green")
             break
 
     if player_chips.total > 0:
         if is_highscore(player_chips.total):
             while True:
-                console.print("Enter your initials for the high score table: ",style="bright_magenta")
+                console.print("Enter your initials for the high score table: "
+                              ,style="bright_magenta")
                 name = input().strip().upper()
-                console.print("3 letters max, only letters allowed",style="bold yellow")
+                console.print("3 letters max, only letters allowed"
+                              ,style="bold yellow")
                 if re.match("^[A-Z]{1,3}$", name):
                     add_highscore(name, player_chips.total)
                     display_high_scores()
                     break
                 else:
-                    print("Invalid input. Please enter 1-3 letters.",style="bold red")
+                    print("Invalid input. Please enter 1-3 letters."
+                          ,style="bold red")
         else:
             console.print("Thanks for playing",style="bold yellow")
-            console.print(f"Your score is: {player_chips.total}",style="bold green")
+            console.print(f"Your score is: {player_chips.total}"
+                          ,style="bold green")
             input("Press Enter to return to the main menu.")
     else:
         console.print("Thanks for playing",style="bold yellow")
-        console.print(f"Your score is: {player_chips.total}",style="bold green")    
+        console.print(f"Your score is: {player_chips.total}"
+                      ,style="bold green")
         input("Press Enter to return to the main menu.")
 
     clear_screen()
@@ -232,15 +246,18 @@ def end_game(deck,player_hand, dealer_hand, player_chips):
     show_all(player_hand, dealer_hand)
     if dealer_hand.value > 21:
         dealer_busts(player_chips)
-        console.print("Round Over - Dealer busts! Player wins!", style="bold green")
+        console.print("Round Over - Dealer busts! Player wins!"
+                      ,style="bold green")
     elif dealer_hand.value > player_hand.value:
         dealer_wins(player_chips)
     elif dealer_hand.value < player_hand.value:
         player_wins(player_chips)
-        console.print("Round Over - Player wins!", style="bold green")
+        console.print("Round Over - Player wins!",
+                      style="bold green")
     else:
         push()
-        console.print("Round Over - its a push!", style="bold yellow")
+        console.print("Round Over - its a push!",
+                      style="bold yellow")
 
 def display_high_scores():
     """
@@ -259,12 +276,14 @@ def display_high_scores():
     else:
         console.print("There are no high scores yet.",style="bold red")
     while True:
-        console.print("\nType 'b' to return to the main menu.",style="bold yellow")
+        console.print("\nType 'b' to return to the main menu.",
+                      style="bold yellow")
         user_input = input().strip()
         if user_input == 'b':
             break
         else:
-            console.print("Invalid input. Type b to return to the main menu.", style="bold red")
+            console.print("Invalid input. Type b to return to the main menu.",
+                          style="bold red")
 
 def is_highscore(score):
     """
@@ -299,21 +318,25 @@ def take_bet(chips):
     """
     while True:
         try:
-            console.print("How many chips would you like to bet? ",style="bold yellow")
+            console.print("How many chips would you like to bet? ",
+                          style="bold yellow")
             bet =input().strip()
             if bet.isnumeric():
                 bet=int(bet)
                 if bet > 0:
                     if bet > chips.total:
-                        console.print("You do not have enough chips", style="bold red")
+                        console.print("You do not have enough chips",
+                                      style="bold red")
                         console.print(f"you have {chips.total} chips")
                     else:
                         chips.bet=bet
                         break
                 else:
-                    console.print("bet needs to be a number greater than 0", style="bold red")
+                    console.print("bet needs to be a number greater than 0",
+                                  style="bold red")
             else:
-                console.print("bet needs to be a positive number", style="bold red")
+                console.print("bet needs to be a positive number",
+                              style="bold red")
         except ValueError:
             console.print("bet needs to be a number", style="bold red")
 
@@ -351,7 +374,8 @@ def hit_or_stand(deck, player_hand, dealer_hand):
     """
     while True:
         try:
-            console.print("Would you like to Hit or Stand? Enter 'h' or 's' ", style="bold yellow")
+            console.print("Would you like to Hit or Stand? Enter 'h' or 's' ",
+                          style="bold yellow")
             x = input().strip()
             if x[0].lower() == 'h':
                 hit(deck, player_hand)
@@ -360,12 +384,14 @@ def hit_or_stand(deck, player_hand, dealer_hand):
                 if player_hand.value > 21:
                     return False  # Player busts, end game
             elif x[0].lower() == 's':
-                console.print("Player stands. Dealer is playing.",style="bold green")
+                console.print("Player stands. Dealer is playing.",
+                              style="bold green")
                 return False  # Player stands, end game
             #else:
                 #print("Sorry, please try again.")
         except(IndexError, ValueError):
-            console.print("Invalid input, please enter either 'h' or 's'.",style="bold red")
+            console.print("Invalid input, please enter either 'h' or 's'.",
+                          style="bold red")
             return True
 
 def show_some(player, dealer):
@@ -380,8 +406,9 @@ def show_some(player, dealer):
     """
     console.print("\nDealer's Hand:",style="magenta")
     console.print(" ::card hidden::",style="magenta")
-    console.print(f" {dealer.cards[1]}" ,style="magenta")   
-    console.print(f"\nPlayer's Hand (value: {player.value}):",style="bright_blue")
+    console.print(f" {dealer.cards[1]}" ,style="magenta")
+    console.print(f"\nPlayer's Hand (value: {player.value}):",
+                  style="bright_blue")
     for card in player.cards:
         console.print(f" {card}",style="bright_blue")
 
@@ -399,7 +426,8 @@ def show_all(player, dealer):
     for card in dealer.cards:
         console.print(f" {card}",style="magenta")
     console.print(f"Dealer's Hand = {dealer.value}",style="magenta")
-    console.print(f"\nPlayer's Hand (value: {player.value}):",style="bright_blue")
+    console.print(f"\nPlayer's Hand (value: {player.value}):",
+                  style="bright_blue")
     for card in player.cards:
         console.print(f" {card}",style="bright_blue")
     console.print(f"Player's Hand = {player.value}",style="bright_blue")

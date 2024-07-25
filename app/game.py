@@ -1,3 +1,17 @@
+"""
+This module contains classes for a card game.
+
+Classes:
+    Card: Represents a playing card.
+    Deck: Represents a deck of playing cards.
+    Hand: Represents a hand of playing cards.
+    Chips: Represents the chips used for betting in the game.
+
+Attributes: 
+    suits (list): A list of strings representing the suits of the cards.
+    ranks (list): A list of strings representing the ranks of the cards.
+    values (dict): A dictionary mapping ranks to values.
+"""
 import random
 
 suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
