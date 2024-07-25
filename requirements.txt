@@ -1,2 +1,2 @@
 # Your requirements go here
-pip install rich
+rich
