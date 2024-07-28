@@ -11,28 +11,28 @@
     <title>Python Terminal by Code Institute</title>
     <style>
         body {
-            background: #004225;
             font-family: Arial;
         }
 
+        body{
+            background: darkgreen;
+        }
 
-        #background {
+        #background{
             position: fixed;
             top: 0;
             left: 0;
             z-index: -10;
             height: 100vh;
             width: 100%;
-            background-color: #004225;
         }
-
 
         /**
         * Default styles for xterm.js
         */
 
         .xterm {
-            font-feature-settings: "liga" 0;
+            font-feature-settings: "liga"0;
             position: relative;
             user-select: none;
             -ms-user-select: none;
@@ -171,23 +171,19 @@
         button {
             width: 200px;
             height: 40px;
-            background-color: #e81010;
+            background-color: #34e810;
             border: 1px solid grey;
             color: black;
             text-transform: uppercase;
             margin: 10px;
             border-radius: 8px;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%,0);         
         }
     </style>
 </head>
 
-<body>
-
-    <div>@{body}</div>
-
-    <div id="background"></div>
-
-</body>
-
+@{body}
 
 </html>
