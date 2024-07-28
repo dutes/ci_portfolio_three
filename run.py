@@ -49,8 +49,8 @@ import re
 import os
 from rich.console import Console
 from rich.text import Text
-from app.game import Deck, Hand, Chips
-from app.database import(create_table, add_highscore, get_highscores)
+from app.game.game import Deck, Hand, Chips
+from app.database.database import(create_table, add_highscore, get_highscores)
 
 # Rest of the code...
 console=Console()
@@ -134,7 +134,7 @@ def start_new_game():
     player_chips=Chips()
     player_chips.total=100
     clear_screen()
-    console.print(f"You have [bold cyan]{player_chips.total}[/bold cyan]chips to start."
+    console.print(f"You have [bold cyan]{player_chips.total}[/bold cyan] chips to start."
                   ,style="bold yellow")
     console.print("\nEach bet you make is taken from your total, each win added.",
         style="bold green")
@@ -148,7 +148,7 @@ def start_new_game():
 
         clear_screen()
         console.print(
-            f"Game has started, player has bet [bold cyan]{player_chips.total}[/bold cyan] chips",
+            f"Game has started, player has bet [bold cyan]{player_chips.bet}[/bold cyan] chips",
                       style="bold green")
 
         player_hand = Hand()
@@ -180,7 +180,7 @@ def start_new_game():
             if player_hand.value <= 21:
                 end_game(deck, player_hand, dealer_hand, player_chips)
         if player_chips.total <= 0:
-            print("You have no more chips. Game Over",style="bold red")
+            console.print("You have no more chips. Game Over",style="bold red")
             break
 
         while True:
@@ -213,15 +213,23 @@ def start_new_game():
                     print("Invalid input. Please enter 1-3 letters."
                           ,style="bold red")
         else:
-            console.print("Thanks for playing",style="bold yellow")
-            console.print(f"Your score is: {player_chips.total}"
-                          ,style="bold green")
-            input("Press Enter to return to the main menu.")
+            console.print("Thanks for playing", style="bold yellow")
+            console.print(f"Your score is: {player_chips.total}", style="bold green")
+        while True:
+            return_input = input("Press Enter to return to the main menu: ").strip()
+            if return_input == "":
+                break
+            else:
+                console.print("Invalid input. Please press Enter to return to the main menu.", style="bold red")
     else:
-        console.print("Thanks for playing",style="bold yellow")
-        console.print(f"Your score is: {player_chips.total}"
-                      ,style="bold green")
-        input("Press Enter to return to the main menu.")
+        console.print("Thanks for playing", style="bold yellow")
+        console.print(f"Your score is: {player_chips.total}", style="bold green")
+    while True:
+        return_input = input("Press Enter to return to the main menu: ").strip()
+        if return_input == "":
+            break
+        else:
+            console.print("Invalid input. Please press Enter to return to the main menu.", style="bold red")
 
     clear_screen()
     main_menu()
@@ -409,7 +417,7 @@ def show_some(player, dealer):
     console.print(" ::card hidden::",style="magenta")
     console.print(f" {dealer.cards[1]}" ,style="magenta")
     console.print(f"\nPlayer's Hand (value: {player.value}):",
-                  style="bright_blue")
+                  style="yellow")
     for card in player.cards:
         console.print(f" {card}",style="bright_blue")
 
@@ -428,7 +436,7 @@ def show_all(player, dealer):
         console.print(f" {card}",style="magenta")
     console.print(f"Dealer's Hand = {dealer.value}",style="magenta")
     console.print(f"\nPlayer's Hand (value: {player.value}):",
-                  style="bright_blue")
+                  style="yellow")
     for card in player.cards:
         console.print(f" {card}",style="bright_blue")
     console.print(f"Player's Hand = {player.value}",style="bright_blue")
