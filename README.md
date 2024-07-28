@@ -1,16 +1,28 @@
 # Code Institute Protfolio 3: BlackJack
 
 ## BlackJack
-The aim of this project was to create a BlacJack game to equally satisfy the
-project requirements as well as offer the user a fun experience within the CLI 
-limiations.
-The game was programmed in Pyhton and utilises the Code Institute python
-template to deploy it on Heroku.
+The aim of this project was to create a BlackJack game to equally satisfy the project requirements as well as offer the user a fun experience within the CLI limitations. The game was programmed in Python and utilizes the Code Institute Python template to deploy it on Heroku.
 
 ## Table of Contents
-
-
-
+- [User Experience](#user-expeirience)
+  - [The Strategy Plane](#the-strategy-plane)
+  - [The Scope Plane](#the-scope-plane)
+  - [The Structure Plane](#the-structure-plane)
+  - [The Skeleton Plane](#the-skeleton-plane)
+  - [The Surface Plane](#the-surface-plane)
+- [Code Architecture](#code-architecture)
+  - [File Structure](#file-structure)
+  - [Reasons for Separation of Files](#reasons-for-separation-of-files)
+- [Class Diagram](#class-diagram)
+- [Flow Diagram](#flow-diagram)
+- [Features](#features)
+- [Testing](#testing)
+- [Validation Testing](#validation-testing)
+- [Libraries Used](#libraries-used)
+- [Project Setup](#project-setup)
+- [Deployment](#deployment)
+- [Credits](#credits)
+- [Thanks](#thanks)
 
 ## User Expeirience
 ### The Strategy Plane
@@ -77,7 +89,7 @@ This is the file where the game logic and rules for BlackJack are held. The reas
 #### app/database/database.py
 This is the file that controls the database interactions and management. Having this file is best practice for DB related code.
 
-### Reasons for seperation of files:
+### Reasons for separation of files
 **Game File (game.py)**
 -**Reusability:** Isolating the game logic allows for easy reuse in other card games or new varients of BlackJack.
 _**Maintainability:** Keeping the game rules seperate makes it easier to update and debug the game logic without affecting the application flow.
@@ -124,15 +136,64 @@ The flow diagram is a representation of the the game logic flow for the BlackJac
 
 Diagram was created using draw.io
 
-## Testing
-The testing for this project was conducted on an ad-hoc basis following the rapid prototyping methodology.
-Here is a test script of some of the tests performed:
+## Features
+ Here is a gallery of the main interactions of the client.
+
+ #### Main Menu
+ ![Main Menu](./readme%20assets/images/main_menu.png)
+
+ This is the main menu prested to the user on launch.
+
+
+ #### High Scores
+ ![High Scores](./readme%20assets/images/high_scores.png)
+
+ This is the High Scores screen containing the highest three scores.
+
+ #### Start New Game
+ ![New Game Start](./readme%20assets/images/new_game_start.png)
+
+ The screen that the user sees after starting a new game. This is where the user's input is taken and validated for the bet ammount for the round.
+
+ #### First Deal
+ ![First Deal](./readme%20assets/images/first_deal.png)
+
+ This is the first deal. The dealer's cards a clearly deliniated from the players by different colours. The action is on the user to hit or stand. The input is validated.
+
+ #### Player Busts
+ ![Player busts](./readme%20assets/images/player_busts.png)
+
+ This is what it looks like when the player busts.
+
+ #### Player Wins
+ ![Player wins](./readme%20assets/images/player_wins.png)
+
+ In this instance, the player wins.
+
+ #### Black Jack
+ ![Player BlackJack](./readme%20assets/images/player_blackJack.png)
+
+ This is a BlackJack for the user.
+
+ #### Player not enough chips
+ ![Player broke](./readme%20assets/images/player_not_enough_chips.png)
+
+ This is what happens when the player attempts to bet more chips than they have.
+
+ #### Player game over - No High Score
+ ![Game over - no high score](./readme%20assets/images/player_game_over.png)
+
+This is the game over screen when the player does not achive a high score.
+
+#### Player game over - High Score
+![Game over - enter high score](./readme%20assets/images/player_enter_hiscore.png)
+
+This is what the user sees if they end the game and have achived a highscore. The user's input is validated.
 
 ## Testing
 
 The testing for this project was conducted using an ad-hoc approach following the principles of rapid prototyping. Below is a detailed test script outlining some of the key tests that were performed:
 
-<u>Test Script:</u>
 
 ### 1. Main Menu
 
@@ -225,3 +286,29 @@ pip install -r requirements.txt
 ```
 python run.py
 ```
+
+## Deployment
+The application was deployed on Heroku using the Code Institute template and instuctions.
+Once you created a Heroku account and linked it to your Github account you must follow these steps:
+1. Open the Heroku dashboard and select click on the 'new' in the top right corner, followed by create new
+2. Give your app a name and chose the European region, then click 'create app' (app name must be unique)
+3. Click on the settings tab.
+4. Click on reveal config vars, enter PORT in the KEY input field and 8000, then click the add button.
+5. scroll down to Buildpacks section.
+6. Click 'Add buildpacks' and select Python form the list, click save changes. 
+7. Click 'Add buildpacks' again and select node.js this time. click save changes.
+8. Click on the deploy tab.
+9. Click on the 'Connect to Github' button, then select the repository.
+10. Tap to connect to confirm the repository.
+11. Select the branch from which to deploy from.
+12. Click on the enable Automatic deploys if desired other wise click 'deploy branch'
+13. Heroku will attempt to deploy the application
+14. Once successful, tap on the open app button to see your app running on Heroku.
+
+## Credits
+* Real Python -  https://realpython.com/ for general Python knowlege.
+* FreeCodeCamp - https://www.freecodecamp.org/news/use-the-rich-library-in-python/ Rich tutorial 
+* Automate the Boring stuff - Book (https://nostarch.com/automatestuff2)
+
+## Thanks
+Thanks to my mentor Matt Bodden for the guidance. 
