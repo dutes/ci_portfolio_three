@@ -33,6 +33,12 @@
             width: 100%;
         }
 
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         /**
         * Default styles for xterm.js
         */
@@ -191,7 +197,9 @@
         }
     </style>
 </head>
-
+<div id="container">
 @{body}
-
+<div id="terminal" class="xterm xterm-viewport"></div>
+<button>Run Program</button>
+</div>
 </html>
