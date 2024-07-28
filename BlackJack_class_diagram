@@ -1,0 +1,15 @@
+// BlackJack Class Diagram
+digraph {
+	Deck [label=Deck]
+	Card [label=Card]
+	Hand [label=Hand]
+	Chips [label=Chips]
+	Database [label=Database]
+	Deck -> Card [label=contains]
+	Hand -> Card [label=contains]
+	Deck -> Hand [label="deals to"]
+	Game -> Deck [label=uses]
+	Game -> Hand [label=uses]
+	Game -> Chips [label=manages]
+	Game -> Database [label=records]
+}
