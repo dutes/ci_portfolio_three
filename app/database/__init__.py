@@ -1,0 +1,1 @@
+from .database import create_table, add_highscore, get_highscores
