@@ -96,6 +96,7 @@ def main_menu():
         blackjack_art=Text(BLACKJACK_ART,style="bold green")
         console.print(blackjack_art)
         console.print("\nBlack Jack Main Menu",style="red")
+        console.print("=====================",style="bold yellow")
         console.print("1. New Game",style="bright_green")
         console.print("2. View High Scores", style="bright_yellow")
         console.print("3. Exit", style="bright_red")
