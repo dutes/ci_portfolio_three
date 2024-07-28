@@ -91,7 +91,7 @@
             display: none;
             position: absolute;
             white-space: nowrap;
-            z-index: 1;
+            z-index: -100;
         }
 
         .xterm .composition-view.active {
@@ -126,6 +126,9 @@
 
         .xterm .xterm-scroll-area {
             visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
         }
 
         .xterm-char-measure-element {
