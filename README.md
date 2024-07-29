@@ -29,7 +29,7 @@ The aim of this project was to create a BlackJack game to equally satisfy the pr
 The primary objective of this project is to create an engaging and user-feiendly text-based BlackJack game that can be played interactively in a terminal window. The game aims to provide a seemless and enjoyable experience for users with clear instructionsm intuitive and engagine gameplay and promt and accurate feedback on their actions.
 
 #### User needs:
-* Entertianment: Users seek an enjoyable and challenging card game that can be played in short sessions. 
+* Entertainment: Users seek an enjoyable and challenging card game that can be played in short sessions. 
 * Clarity: Users need clear instructions and feedback to understand the out come of their actions.
 * Progress Tracking: Users want to keep track of progress or successess, the highscores table is a means of doing this.
 
@@ -43,14 +43,14 @@ The primary objective of this project is to create an engaging and user-feiendly
 #### Content Requirements
 * Game Instructions: Provide a brief overview of the game rules and how to play.
 * Feedback Messages: Display messages for the outcomes of game actions as well as invalid inputs through out the game.
-* High Scores Display: Keep track and display on request the top three scores. Prompt the user to add thier initals to the record
+* High Scores Display: Keep track of and display on request the top three scores. Prompt the user to add their initals to the record
 git 
 ### The Structure Plane
 #### Interaction Design 
 * Main Menu: offers options to start new game, view high scores, exit.
 * Game loop: Guide the users through the game round from placing bets to playing their hand, concluding the round and updating the players chip balance.
 * User Input: Promt the user for inputs and continously validate the users inputs.
-* Feedback and Instructions: Provide real-time feedback and instuctions based on the user's actions in game.
+* Feedback and Instructions: Provide real-time feedback and instructions based on the user's actions in game.
 
 #### Infomation Architecture
 * Main Menu: A central hub for accessing the program elements.
@@ -81,11 +81,11 @@ git
 ## Code Architecture
 
 ### File Structure
-The project is organised into serveral files to ensure modularity, maintainabilty and clarity. The files are as follows:
+The project is organised into several files to ensure modularity, maintainability and clarity. The files are as follows:
 #### run.py
 This is the main entry point of the application and handles the game flow and user interactions.
 #### app/game/game.py
-This is the file where the game logic and rules for BlackJack are held. The reason these rules are kept in a seperate file is so that they can be reused or modified to create a new game varient.
+This is the file where the game logic and rules for BlackJack are held. The reason these rules are kept in a separate file is so that they can be reused or modified to create a new game varient.
 #### app/database/database.py
 This is the file that controls the database interactions and management. Having this file is best practice for DB related code.
 
@@ -96,13 +96,13 @@ _**Maintainability:** Keeping the game rules seperate makes it easier to update 
 _**Clarity:** Makes the code easier to read and understand by distinguishing between the game rules and the functionality of the rest of the application
 
 **Database File (database.py)**
--**Seperation of concerns:** Allows for the DB operations to be managed seperately from the main game logic as is best practice for BD operations.
+-**Seperation of concerns:** Allows for the DB operations to be managed separately from the main game logic as is best practice for DB operations.
 _**Scalability:** Keeping the game rules and logic segregated from the DB operations allows for expansion of the DB features without cluttering the main application logic.
 _**Common Practice:** As outlined in the Model-View-Controller (MVC) architecture, separating the application into distinct components is a preferred principle.
 
 ## Class Diagram
 
-This is a diagram of the stucutre of the classes in the BlackJack game:
+This is a diagram of the strucutre of the classes in the BlackJack game:
 
 ![class Diagram](./readme%20assets/images/BlackJack_class_diagram.png)
 
@@ -130,7 +130,7 @@ dot.render('BlackJack_class_diagram', format='png',view=True)
 ```
 ## Flow Diagram
 
-The flow diagram is a representation of the the game logic flow for the BlackJack game:
+The flow diagram is a representation of the game logic flow for the BlackJack game:
 
 ![Flow Diagram](./readme%20assets/images/BlackJack_flow.png)
 
@@ -142,7 +142,7 @@ Diagram was created using draw.io
  #### Main Menu
  ![Main Menu](./readme%20assets/images/main_menu.png)
 
- This is the main menu prested to the user on launch.
+ This is the main menu presented to the user on launch.
 
 
  #### High Scores
@@ -183,12 +183,12 @@ Diagram was created using draw.io
  #### Player game over - No High Score
  ![Game over - no high score](./readme%20assets/images/player_game_over.png)
 
-This is the game over screen when the player does not achive a high score.
+This is the game over screen when the player does not achieve a high score.
 
 #### Player game over - High Score
 ![Game over - enter high score](./readme%20assets/images/player_enter_hiscore.png)
 
-This is what the user sees if they end the game and have achived a highscore. The user's input is validated.
+This is what the user sees if they end the game and have achieved a highscore. The user's input is validated.
 
 ## Testing
 
@@ -288,12 +288,12 @@ python run.py
 ```
 
 ## Deployment
-The application was deployed on Heroku using the Code Institute template and instuctions.
+The application was deployed on Heroku using the Code Institute template and instructions.
 Once you created a Heroku account and linked it to your Github account you must follow these steps:
-1. Open the Heroku dashboard and select click on the 'new' in the top right corner, followed by create new
+1. Open the Heroku dashboard and select click on the 'new' button in the top right corner, followed by create new
 2. Give your app a name and chose the European region, then click 'create app' (app name must be unique)
 3. Click on the settings tab.
-4. Click on reveal config vars, enter PORT in the KEY input field and 8000, then click the add button.
+4. Click on reveal config vars, enter PORT in the KEY input field and 8000 in the value, then click the add button.
 5. scroll down to Buildpacks section.
 6. Click 'Add buildpacks' and select Python form the list, click save changes. 
 7. Click 'Add buildpacks' again and select node.js this time. click save changes.
@@ -304,6 +304,9 @@ Once you created a Heroku account and linked it to your Github account you must 
 12. Click on the enable Automatic deploys if desired other wise click 'deploy branch'
 13. Heroku will attempt to deploy the application
 14. Once successful, tap on the open app button to see your app running on Heroku.
+
+The app is currently deployed here:
+https://dutes-ci-portfolio3-a902468546c1.herokuapp.com/
 
 ## Credits
 * Real Python -  https://realpython.com/ for general Python knowlege.
