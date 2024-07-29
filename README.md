@@ -24,35 +24,35 @@ The aim of this project was to create a BlackJack game to equally satisfy the pr
 - [Credits](#credits)
 - [Thanks](#thanks)
 
-## User Expeirience
+## User Experience
 ### The Strategy Plane
-The primary objective of this project is to create an engaging and user-feiendly text-based BlackJack game that can be played interactively in a terminal window. The game aims to provide a seemless and enjoyable experience for users with clear instructionsm intuitive and engagine gameplay and promt and accurate feedback on their actions.
+The primary objective of this project is to create an engaging and user-friendly text-based BlackJack game that can be played interactively in a terminal window. The game aims to provide a seamless and enjoyable experience for users with clear instructions, intuitive and engaging gameplay, and prompt and accurate feedback on their actions.
 
 #### User needs:
 * Entertainment: Users seek an enjoyable and challenging card game that can be played in short sessions. 
 * Clarity: Users need clear instructions and feedback to understand the out come of their actions.
-* Progress Tracking: Users want to keep track of progress or successess, the highscores table is a means of doing this.
+* Progress Tracking: Users want to keep track of progress or successes, the highscores table is a means of doing this.
 
 ### The Scope Plane
 #### Functional Specifications
 * Gameplay Mechanics: Implement code BlackJack rules including dealing cards, player actions, win/loss conditions and high score tracking.
-* Betting System: Allow the users to place bets and update their chip blance based on round outcomes.
+* Betting System: Allow the users to place bets and update their chip balance based on round outcomes.
 * High Scores: Keep a record of top scores and display them when requested.
 * User Prompts: Provide clear and timely feedback to the user's actions.
 
 #### Content Requirements
 * Game Instructions: Provide a brief overview of the game rules and how to play.
 * Feedback Messages: Display messages for the outcomes of game actions as well as invalid inputs through out the game.
-* High Scores Display: Keep track of and display on request the top three scores. Prompt the user to add their initals to the record
-git 
+* High Scores Display: Keep track of and display on request the top three scores. Prompt the user to add their initials to the record
+
 ### The Structure Plane
 #### Interaction Design 
 * Main Menu: offers options to start new game, view high scores, exit.
 * Game loop: Guide the users through the game round from placing bets to playing their hand, concluding the round and updating the players chip balance.
-* User Input: Promt the user for inputs and continously validate the users inputs.
+* User Input: Prompt the user for inputs and continously validate the users inputs.
 * Feedback and Instructions: Provide real-time feedback and instructions based on the user's actions in game.
 
-#### Infomation Architecture
+#### Information Architecture
 * Main Menu: A central hub for accessing the program elements.
 * Game Screen: Display game-related information such as the player's and dealer's hands, chip counts and betting options.
 * High Scores Screen: Show the top scores and provide an option to return to the main menu.
@@ -64,7 +64,7 @@ git
   * Options: 1. New Game, 2. View High Scores, 3. Exit
 * Game Screen:
  * Player and dealer hands displayed, dealer has a card face down.
- * Current Chip balance and bet ammount
+ * Current Chip balance and bet amount
  * Action prompts for hitting, standing and placing bets.
  * Clear feedback messaging on game outcomes.
 * High Scores Screen
@@ -85,14 +85,14 @@ The project is organised into several files to ensure modularity, maintainabilit
 #### run.py
 This is the main entry point of the application and handles the game flow and user interactions.
 #### app/game/game.py
-This is the file where the game logic and rules for BlackJack are held. The reason these rules are kept in a separate file is so that they can be reused or modified to create a new game varient.
+This is the file where the game logic and rules for BlackJack are held. The reason these rules are kept in a separate file is so that they can be reused or modified to create a new game variant.
 #### app/database/database.py
 This is the file that controls the database interactions and management. Having this file is best practice for DB related code.
 
 ### Reasons for separation of files
 **Game File (game.py)**
 -**Reusability:** Isolating the game logic allows for easy reuse in other card games or new varients of BlackJack.
-_**Maintainability:** Keeping the game rules seperate makes it easier to update and debug the game logic without affecting the application flow.
+_**Maintainability:** Keeping the game rules separate makes it easier to update and debug the game logic without affecting the application flow.
 _**Clarity:** Makes the code easier to read and understand by distinguishing between the game rules and the functionality of the rest of the application
 
 **Database File (database.py)**
