@@ -190,6 +190,11 @@ This is the game over screen when the player does not achieve a high score.
 
 This is what the user sees if they end the game and have achieved a highscore. The user's input is validated.
 
+#### Heroku Terminal Styling
+![Heroku terminal](./readme%20assets/images/heroku_terminal.png)
+
+I edited the Heroku terminal layout.html to center the terminal window and themed the colours to enhance the BlackJack theme.
+
 ## Testing
 
 The testing for this project was conducted using an ad-hoc approach following the principles of rapid prototyping. Below is a detailed test script outlining some of the key tests that were performed:
