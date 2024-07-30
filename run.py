@@ -15,7 +15,7 @@ flow.
 game logic and determines the winner.
 - display_high_scores(): Displays the top three high scores from the high
 scores table.
-- is_highscore(score): Determines if the player's score is a high score.
+- is_high score(score): Determines if the player's score is a high score.
 - take_bet(chips): Prompts the player to enter a bet and validates the bet
 amount.
 - hit(deck, hand): Adds a card to the player's or dealer's hand and adjusts
@@ -37,8 +37,8 @@ The module also imports the following classes and functions:
 - Hand: A class representing a hand of cards.
 - Chips: A class representing the player's chip balance.
 - create_table(): A function to create the high scores table in the database.
-- add_highscore(name, score): A function to add a high score to the database.
-- get_highscores(): A function to retrieve the top three high scores from
+- add_high score(name, score): A function to add a high score to the database.
+- get_high scores(): A function to retrieve the top three high scores from
 the database.
 
 The module is run as the main program to start the game by calling the
@@ -221,7 +221,8 @@ def start_new_game():
             if return_input == "":
                 break
             else:
-                console.print("Invalid input. Please press Enter to return to the main menu.", style="bold red")
+                console.print("Invalid input. Please press Enter to return to the main menu."
+                              , style="bold red")
     else:
         console.print("Thanks for playing", style="bold yellow")
         console.print(f"Your score is: {player_chips.total}", style="bold green")
@@ -230,7 +231,8 @@ def start_new_game():
         if return_input == "":
             break
         else:
-            console.print("Invalid input. Please press Enter to return to the main menu.", style="bold red")
+            console.print("Invalid input. Please press Enter to return to the main menu."
+                          , style="bold red")
 
     clear_screen()
     main_menu()
@@ -397,8 +399,6 @@ def hit_or_stand(deck, player_hand, dealer_hand):
                 console.print("Player stands. Dealer is playing.",
                               style="bold green")
                 return False  # Player stands, end game
-            #else:
-                #print("Sorry, please try again.")
         except(IndexError, ValueError):
             console.print("Invalid input, please enter either 'h' or 's'.",
                           style="bold red")
