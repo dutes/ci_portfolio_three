@@ -17,6 +17,8 @@ The aim of this project was to create a BlackJack game to equally satisfy the pr
 - [Flow Diagram](#flow-diagram)
 - [Features](#features)
 - [Testing](#testing)
+  - [Outstanding issues](#outstanding-issues)
+  - [Future Actions](#Future-actions)
 - [Validation Testing](#validation-testing)
 - [Libraries Used](#libraries-used)
 - [Project Setup](#project-setup)
@@ -254,6 +256,12 @@ The testing for this project was conducted using an ad-hoc approach following th
 |-----------------------------|--------------------------------------------------|-------------------------------------------------------------------------------|-----------|
 | Both Player and Dealer Have Blackjack | Deal initial hands where both the player and dealer have blackjack | A message is displayed: "Both Blackjack! It's a push." |  pass      |
 | Player with Two Aces        | Deal initial hands where the player receives two aces | One ace is counted as 11, and the other is counted as 1, resulting in a hand value of 12. |  pass      |
+
+## Outstanding issues
+There is an issue where the game crashes after playing 15+ rounds. This problem has only occurred in the Heroku deployment and not on local machines, making it difficult to debug.
+
+## Future Actions
+In future projects, I would include logging tools such as Firebase to gather robust logs of the issue occurring. This should enable me to identify the problem more effectively and update the code with a fix.
 
 ### Validation Testing
 The code was validated using the Pylint (https://marketplace.visualstudio.com/items?itemName=ms-python.pylint) plugin on Visual studio code. Errors found by the linter were white spaces & lines going past the 79th char limit. All of the issues reported by linter were resolved. 
