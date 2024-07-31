@@ -131,7 +131,7 @@ def start_new_game():
     create_table()
     deck = Deck()
     deck.shuffle()
-
+    #initialize player chips
     player_chips=Chips()
     player_chips.total=100
     clear_screen()
@@ -141,8 +141,10 @@ def start_new_game():
         style="bold green")
     console.print("\nWhen you reach zero chips your game is over.\n"
                   ,style="bold red")
-
+    #continue loop as long as player has chips
     while player_chips.total > 0:
+        deck = Deck() #fix for bug where deck runs out of cards so new deck is created each round
+        deck.shuffle()
         console.print(f"your current chip balance is: [bold cyan]{player_chips.total}[/bold cyan]"
                       ,style="bold green")
         take_bet(player_chips)
@@ -151,7 +153,7 @@ def start_new_game():
         console.print(
             f"Game has started, player has bet [bold cyan]{player_chips.bet}[/bold cyan] chips",
                       style="bold green")
-
+        #deal inital hands
         player_hand = Hand()
         player_hand.add_card(deck.deal())
         player_hand.add_card(deck.deal())
@@ -161,7 +163,7 @@ def start_new_game():
         dealer_hand.add_card(deck.deal())
 
         show_some(player_hand, dealer_hand)
-
+        #check for blackjack on dealt cards
         if player_hand.value == 21 and dealer_hand.value == 21:
             show_all(player_hand, dealer_hand)
             push()
@@ -183,7 +185,7 @@ def start_new_game():
         if player_chips.total <= 0:
             console.print("You have no more chips. Game Over",style="bold red")
             break
-
+        #promt for new round
         while True:
             console.print("Do you want to play another round? Enter 'y' or 'n': "
                           ,style="bold yellow")
@@ -197,7 +199,7 @@ def start_new_game():
             console.print(f"Your score is: {player_chips.total}",
                           style="bold green")
             break
-
+     #check if player's score makes it to the high scores table       
     if player_chips.total > 0:
         if is_highscore(player_chips.total):
             while True:
