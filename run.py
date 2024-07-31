@@ -199,7 +199,7 @@ def start_new_game():
             console.print(f"Your score is: {player_chips.total}",
                           style="bold green")
             break
-     #check if player's score makes it to the high scores table       
+     #check if player's score makes it to the high scores table
     if player_chips.total > 0:
         if is_highscore(player_chips.total):
             while True:
@@ -244,7 +244,6 @@ def end_game(deck,player_hand, dealer_hand, player_chips):
     Handles the end of game logic which includes the dealer playing and
     determining the winner of the game and updating the player's chip balance.
         
-
     Parameters:
     deck (Deck): The deck of cards used in the game.
     player_hand (Hand): The player's hand of cards.

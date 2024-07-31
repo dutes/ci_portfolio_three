@@ -1,3 +1,42 @@
+"""
+This module contains functions to interact with the SQLite database.
+
+The functions in this module are used to create the highscores table,
+add a highscore to the table, retrieve the top 3 highscores, get the
+lowest highscore, delete a highscore, and maintain the highscores table.
+
+The highscores table has the following columns:
+- id (INTEGER): The primary key of the highscore.
+- name (TEXT): The name of the player.
+- score (INTEGER): The score achieved by the player.
+
+The functions in this module use the sqlite3 module to interact with
+the SQLite database. The connect_db function is used to connect to the
+database, and the create_table function is used to create the highscores
+table if it does not exist.
+
+The add_highscore function is used to add a highscore to the highscores
+table. The function takes two parameters: name and score. The name
+parameter is the name of the player, and the score parameter is the
+score achieved by the player. 
+
+The get_highscores function is used to retrieve the top 3 highscores
+from the highscores table. The function returns a list of tuples
+containing the name and score of the top 3 highscores.
+
+The get_lowest_highscore function is used to retrieve the lowest
+highscore from the highscores table. The function returns a tuple
+containing the id and score of the lowest highscore.
+
+The delete_highscore function is used to delete a highscore from the
+highscores table. The function takes one parameter: score_id, which
+is the id of the highscore to be deleted.
+
+The maintain_highscores function is used to maintain the highscores
+table by keeping only the top 3 highscores. The function checks the
+number of rows in the highscores table and deletes the lowest highscore
+if the number of rows is greater than 3.
+"""
 import sqlite3
 
 def connect_db():

@@ -3,6 +3,9 @@
 ## BlackJack
 The aim of this project was to create a BlackJack game to equally satisfy the project requirements as well as offer the user a fun experience within the CLI limitations. The game was programmed in Python and utilizes the Code Institute Python template to deploy it on Heroku.
 
+##  A note on DocStrings
+Please note that the docstring format followed for this project matches that of the organisation I work for. I am submitting this course work as part of a development progam within my organisation and therefore am following the perscribed format for commenting and documentaiton (docstrings)
+
 ## Table of Contents
 - [User Experience](#user-expeirience)
   - [The Strategy Plane](#the-strategy-plane)
@@ -197,6 +200,9 @@ This is what the user sees if they end the game and have achieved a highscore. T
 
 I edited the Heroku terminal layout.html to center the terminal window and themed the colours to enhance the BlackJack theme.
 
+##  A note on DocStrings
+Please note that the docstring format followed for this project matches that of the organisation I work for. I am submitting this course work as part of a development progam within my organisation and therefore am following the perscribed format for commenting and documentaiton (docstrings)
+
 ## Testing
 
 The testing for this project was conducted using an ad-hoc approach following the principles of rapid prototyping. Below is a detailed test script outlining some of the key tests that were performed:
@@ -257,11 +263,11 @@ The testing for this project was conducted using an ad-hoc approach following th
 | Both Player and Dealer Have Blackjack | Deal initial hands where both the player and dealer have blackjack | A message is displayed: "Both Blackjack! It's a push." |  pass      |
 | Player with Two Aces        | Deal initial hands where the player receives two aces | One ace is counted as 11, and the other is counted as 1, resulting in a hand value of 12. |  pass      |
 
-## Outstanding issues
-There is an issue where the game crashes after playing 15+ rounds. This problem has only occurred in the Heroku deployment and not on local machines, making it difficult to debug.
+## Notable Issues
+During the development of this project there was some noteable issues discovered. The primary issue which was picked up by user testing was that after a certain number of rounds, the game would crash throwing an error on the deck.pop() method. After investigation I discovered I had ommited calling for a new deck and shuffle during the gameplay loop. The issue was caused by the dealer and user running out of cards to deal new hands. The fix was to add a new deck and shuffle calls at the begining of the new game loop.
 
 ## Future Actions
-In future projects, I would include logging tools such as Firebase to gather robust logs of the issue occurring. This should enable me to identify the problem more effectively and update the code with a fix.
+In future developments I would like to add multiplayer and allow for a choice of games to play. The multiple games to play is part of the reason why I have a seperate game file to handle the rules set. 
 
 ### Validation Testing
 The code was validated using the Pylint (https://marketplace.visualstudio.com/items?itemName=ms-python.pylint) plugin on Visual studio code. Errors found by the linter were white spaces & lines going past the 79th char limit. All of the issues reported by linter were resolved. 
@@ -275,6 +281,9 @@ The os library is used to make the game space easier to follow by calling the cl
 
 #### rich
 The rich library allows for the colouring of text and easy display of ASCII art.
+
+### graphviz
+The graphviz library was used to create the class map for the project. 
 
 ## Project Setup
 To setup the project locally, follow these steps:
@@ -325,6 +334,7 @@ https://dutes-ci-portfolio3-a902468546c1.herokuapp.com/
 * Real Python -  https://realpython.com/ for general Python knowlege.
 * FreeCodeCamp - https://www.freecodecamp.org/news/use-the-rich-library-in-python/ Rich tutorial 
 * Automate the Boring stuff - Book (https://nostarch.com/automatestuff2)
+* Plotly - https://plotly.com/python/network-graphs/ 
 
 ## Thanks
 Thanks to my mentor Matt Bodden for the guidance. 
