@@ -1,4 +1,4 @@
-# Code Institute Protfolio 3: BlackJack
+# Code Institute Portfolio 3: BlackJack
 
 ## BlackJack
 The aim of this project was to create a BlackJack game to equally satisfy the project requirements as well as offer the user a fun experience within the CLI limitations. The game was programmed in Python and utilizes the Code Institute Python template to deploy it on Heroku.

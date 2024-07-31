@@ -44,7 +44,7 @@ the database.
 The module is run as the main program to start the game by calling the
 main_menu function.
 """
-
+#imports
 import re
 import os
 from rich.console import Console
@@ -52,7 +52,7 @@ from rich.text import Text
 from app.game.game import Deck, Hand, Chips
 from app.database.database import(create_table, add_highscore, get_highscores)
 
-# Rest of the code...
+#initialize console
 console=Console()
 #ASCII art for main menu
 BLACKJACK_ART = r"""
@@ -211,7 +211,7 @@ def start_new_game():
                     display_high_scores()
                     break
                 else:
-                    print("Invalid input. Please enter 1-3 letters."
+                    console.print("Invalid input. Please enter 1-3 letters."
                           ,style="bold red")
         else:
             console.print("Thanks for playing", style="bold yellow")
