@@ -133,6 +133,8 @@ dot.edge('Game', 'Database', label='records')
 
 dot.render('BlackJack_class_diagram', format='png',view=True)
 ```
+Even though not directly related to how the project runs, I have included the pygraphviz.py file in the root of the project directory for the sake of completeness and to offer transparency on how the class map was created.
+
 ## Flow Diagram
 
 The flow diagram is a representation of the game logic flow for the BlackJack game:
