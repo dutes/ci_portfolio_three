@@ -13,8 +13,9 @@ Attributes:
     values (dict): A dictionary mapping ranks to values.
 """
 import random
-
+#defining the suits, ranks and values of the cards for the game
 suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+
 ranks = ['Two',
          'Three', 
          'Four', 

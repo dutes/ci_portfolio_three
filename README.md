@@ -1,10 +1,10 @@
 # Code Institute Portfolio 3: BlackJack
 
 ## BlackJack
-The aim of this project was to create a BlackJack game to equally satisfy the project requirements as well as offer the user a fun experience within the CLI limitations. The game was programmed in Python and utilizes the Code Institute Python template to deploy it on Heroku.
+The aim of this project is to create a BlackJack game to equally satisfy the project requirements as well as offer the user a fun experience within the CLI limitations. The game was programmed in Python and utilizes the Code Institute Python template to deploy it on Heroku.
 
 ##  A note on DocStrings
-Please note that the docstring format followed for this project matches that of the organisation I work for. I am submitting this course work as part of a development progam within my organisation and therefore am following the perscribed format for commenting and documentaiton (docstrings)
+Please note that the docstring format followed for this project matches that of the organisation I work for. I am submitting this course work as part of a development program within my organisation and therefore I am following the prescribed format for commenting and documentaiton (docstrings)
 
 ## Table of Contents
 - [User Experience](#user-expeirience)
@@ -35,8 +35,8 @@ The primary objective of this project is to create an engaging and user-friendly
 
 #### User needs:
 * Entertainment: Users seek an enjoyable and challenging card game that can be played in short sessions. 
-* Clarity: Users need clear instructions and feedback to understand the out come of their actions.
-* Progress Tracking: Users want to keep track of progress or successes, the highscores table is a means of doing this.
+* Clarity: Users need clear instructions and feedback to understand the outcome of their actions.
+* Progress Tracking: Users want to keep track of their progress or successes, the highscores table is a means of doing this.
 
 ### The Scope Plane
 #### Functional Specifications
@@ -47,18 +47,18 @@ The primary objective of this project is to create an engaging and user-friendly
 
 #### Content Requirements
 * Game Instructions: Provide a brief overview of the game rules and how to play.
-* Feedback Messages: Display messages for the outcomes of game actions as well as invalid inputs through out the game.
+* Feedback Messages: Display messages for the outcomes of game actions as well as invalid inputs throughout the game.
 * High Scores Display: Keep track of and display on request the top three scores. Prompt the user to add their initials to the record
 
 ### The Structure Plane
 #### Interaction Design 
 * Main Menu: offers options to start new game, view high scores, exit.
 * Game loop: Guide the users through the game round from placing bets to playing their hand, concluding the round and updating the players chip balance.
-* User Input: Prompt the user for inputs and continously validate the users inputs.
+* User Input: Prompt the user for inputs and continuously validate the users inputs.
 * Feedback and Instructions: Provide real-time feedback and instructions based on the user's actions in game.
 
 #### Information Architecture
-* Main Menu: A central hub for accessing the program elements.
+* Main Menu: A central hub for accessing the program's elements.
 * Game Screen: Display game-related information such as the player's and dealer's hands, chip counts and betting options.
 * High Scores Screen: Show the top scores and provide an option to return to the main menu.
 
@@ -69,17 +69,17 @@ The primary objective of this project is to create an engaging and user-friendly
   * Options: 1. New Game, 2. View High Scores, 3. Exit
 * Game Screen:
  * Player and dealer hands displayed, dealer has a card face down.
- * Current Chip balance and bet amount
+ * Current Chip balance and bet amount.
  * Action prompts for hitting, standing and placing bets.
  * Clear feedback messaging on game outcomes.
-* High Scores Screen
+* High Scores Screen.
  * List of three highest scores.
  * Prompt to return to the main menu.
 
 ### The Surface Plane
 #### Visual design
 * Text Styling: Use colours and text styles to differentiate between different types of information.
-* ASCII Art: Include an ASCCI art header for the main menu
+* ASCII Art: Include an ASCCI art header for the main menu.
 * Colour Scheme: Use a colour scheme to make the information easier for the user to read and understand e.g. green for player actions, yellow for important messages.
 
 
@@ -98,7 +98,7 @@ This is the file that controls the database interactions and management. Having 
 **Game File (game.py)**
 -**Reusability:** Isolating the game logic allows for easy reuse in other card games or new varients of BlackJack.
 _**Maintainability:** Keeping the game rules separate makes it easier to update and debug the game logic without affecting the application flow.
-_**Clarity:** Makes the code easier to read and understand by distinguishing between the game rules and the functionality of the rest of the application
+_**Clarity:** Makes the code easier to read and understand by distinguishing between the game rules and the functionality of the rest of the application.
 
 **Database File (database.py)**
 -**Seperation of concerns:** Allows for the DB operations to be managed separately from the main game logic as is best practice for DB operations.
@@ -163,7 +163,7 @@ Diagram was created using draw.io
  #### First Deal
  ![First Deal](./readme%20assets/images/first_deal.png)
 
- This is the first deal. The dealer's cards a clearly deliniated from the players by different colours. The action is on the user to hit or stand. The input is validated.
+ This is the first deal. The dealer's cards a clearly delineated from the players by different colours. The action is on the user to hit or stand. The input is validated.
 
  #### Player Busts
  ![Player busts](./readme%20assets/images/player_busts.png)
@@ -200,8 +200,6 @@ This is what the user sees if they end the game and have achieved a highscore. T
 
 I edited the Heroku terminal layout.html to center the terminal window and themed the colours to enhance the BlackJack theme.
 
-##  A note on DocStrings
-Please note that the docstring format followed for this project matches that of the organisation I work for. I am submitting this course work as part of a development progam within my organisation and therefore am following the perscribed format for commenting and documentaiton (docstrings)
 
 ## Testing
 
@@ -267,14 +265,14 @@ The testing for this project was conducted using an ad-hoc approach following th
 During the development of this project there was some noteable issues discovered. The primary issue which was picked up by user testing was that after a certain number of rounds, the game would crash throwing an error on the deck.pop() method. After investigation I discovered I had ommited calling for a new deck and shuffle during the gameplay loop. The issue was caused by the dealer and user running out of cards to deal new hands. The fix was to add a new deck and shuffle calls at the begining of the new game loop.
 
 ## Future Actions
-In future developments I would like to add multiplayer and allow for a choice of games to play. The multiple games to play is part of the reason why I have a seperate game file to handle the rules set. 
+In future developments I would like to add multiplayer and allow for a choice of games to play. The multiple games to play is part of the reasons why I have a separate game file to handle the rules set. 
 
 ### Validation Testing
 The code was validated using the Pylint (https://marketplace.visualstudio.com/items?itemName=ms-python.pylint) plugin on Visual studio code. Errors found by the linter were white spaces & lines going past the 79th char limit. All of the issues reported by linter were resolved. 
 
 ## Libraries used
 #### re
-The Regular Expression library is used for character validation
+The Regular Expression library is used for character validation.
 
 #### os
 The os library is used to make the game space easier to follow by calling the clearscreen() function when the need arose to have a screen refresh.
@@ -312,8 +310,8 @@ python run.py
 ## Deployment
 The application was deployed on Heroku using the Code Institute template and instructions.
 Once you created a Heroku account and linked it to your Github account you must follow these steps:
-1. Open the Heroku dashboard and select click on the 'new' button in the top right corner, followed by create new
-2. Give your app a name and chose the European region, then click 'create app' (app name must be unique)
+1. Open the Heroku dashboard and select click on the 'new' button in the top right corner, followed by create new.
+2. Give your app a name and chose the European region, then click 'create app' (app name must be unique).
 3. Click on the settings tab.
 4. Click on reveal config vars, enter PORT in the KEY input field and 8000 in the value, then click the add button.
 5. scroll down to Buildpacks section.
@@ -323,8 +321,8 @@ Once you created a Heroku account and linked it to your Github account you must 
 9. Click on the 'Connect to Github' button, then select the repository.
 10. Tap to connect to confirm the repository.
 11. Select the branch from which to deploy from.
-12. Click on the enable Automatic deploys if desired other wise click 'deploy branch'
-13. Heroku will attempt to deploy the application
+12. Click on the enable Automatic deploys if desired otherwise click 'deploy branch'
+13. Heroku will attempt to deploy the application.
 14. Once successful, tap on the open app button to see your app running on Heroku.
 
 The app is currently deployed here:
